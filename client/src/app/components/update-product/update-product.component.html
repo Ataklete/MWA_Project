@@ -1,0 +1,93 @@
+
+<h1>Edit Product</h1>
+<ul *ngIf="messages.length > 0">
+  <li *ngFor="let message of messages" >
+    <small class="uk-form-danger farmart-error-display">{{message}}</small>
+  </li>
+</ul>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="uk-grid">
+    <div class="uk-width-1-2">
+      <span class="uk-form-icon" uk-icon="icon: name"></span>
+      <input
+        class="uk-input uk-form-large uk-width-1-1"
+        type="text"
+        placeholder="Product name"
+        name="name"
+        [formControl]="productForm.get('name')"
+      />
+      <div class="uk-form-danger" *ngIf="!productForm.get('name').valid">
+        Please enter a product name
+      </div>
+    </div>
+  </div>
+  <div class="uk-grid">
+    <div class="uk-width-1-2">
+      <span class="uk-form-icon" uk-icon="icon: mail"></span>
+      <input
+        class="uk-input uk-form-large uk-width-1-1"
+        type="text"
+        placeholder="category type"
+        name="category"
+        [formControl]="productForm.get('category')"
+      />
+      <div class="uk-form-danger" *ngIf="!productForm.get('category').valid">
+        Please provide category
+      </div>
+    </div>
+  </div>
+  <div class="uk-grid">
+    <div class="uk-width-1-2">
+      <span class="uk-form-icon" uk-icon="icon: lock"></span>
+      <textarea
+        placeholder="Set a description"
+        name="description"
+        class="uk-input uk-form-large uk-width-1-1"
+        [formControl]="productForm.get('description')"
+        cols="30"
+        rows="50"
+      ></textarea>
+      <div class="uk-form-danger" *ngIf="!productForm.get('description').valid">
+        Please provide description
+      </div>
+    </div>
+  </div>
+  <div class="uk-grid">
+    <div class="uk-width-1-2">
+      <span class="uk-form-icon" uk-icon="icon: mail"></span>
+      <input
+        class="uk-input uk-form-large uk-width-1-1"
+        type="number"
+        placeholder="price"
+        name="price"
+        [formControl]="productForm.get('price')"
+      />
+      <div class="uk-form-danger" *ngIf="!productForm.get('price').valid">
+        Please provide price
+      </div>
+    </div>
+  </div>
+  <div class="uk-grid uk-margin-bottom uk-margin-top">
+    <div class="uk-width-1-2">
+      <div id="upload-drop" class="uk-placeholder">
+        <input
+          class="uk-form-file"
+          type="file"
+          name="image"
+          (change)="onFileSelect($event)"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="uk-grid">
+    <div class="uk-width-1-2">
+      <button
+        class="uk-button uk-button-primary uk-button-large"
+        type="submit"
+        [disabled]="!productForm.valid"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</form>

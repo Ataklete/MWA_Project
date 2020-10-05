@@ -1,0 +1,26 @@
+<app-nav></app-nav>
+
+<app-center>
+  <div class="uk-grid">
+    <div class="uk-width-3-10 uk-height-viewport">
+      <div class="uk-panel uk-panel-box uk-height-viewport uk-block-secondary uk-contrast">
+        <h1 class="uk-panel-title">Welcome</h1>
+        <ul class="uk-nav uk-nav-side">
+          <!-- <li>
+            <a [routerLink]="['profile']">Profile</a>
+          </li> -->
+          <li *ngIf="authService.role === 'farmer'">
+            <a [routerLink]="['view-product']">Products</a>
+          </li>
+          <li>
+            <a [routerLink]="['orders']">Orders</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="uk-width-7-10">
+      <hr>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</app-center>
